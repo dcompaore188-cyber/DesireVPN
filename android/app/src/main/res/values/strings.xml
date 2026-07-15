@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Desire VPN</string>
+    <string name="title_activity_main">Desire VPN</string>
+    <string name="package_name">com.desire.vpn</string>
+    <string name="custom_url_scheme">com.desire.vpn</string>
+</resources>
