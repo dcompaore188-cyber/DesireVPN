@@ -31,5 +31,5 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: DesireVPN-APK
+          name: VPN_TEST_DÉSIRÉ 
           path: android/app/build/outputs/apk/debug/app-debug.apk
