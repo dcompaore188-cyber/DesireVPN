@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Désiré Digital Services</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#080012;
+color:white;
+padding:20px;
+}
+
+/* MENU */
+.menu{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:25px;
+}
+
+.menu a{
+text-decoration:none;
+color:white;
+padding:10px 15px;
+border-radius:25px;
+border:1px solid #b000ff;
+background:#160025;
+box-shadow:0 0 15px #b000ff;
+}
+
+/* CONTAINER */
+
+.container{
+max-width:700px;
+margin:auto;
+}
+
+/* TITRE */
+
+.logo{
+text-align:center;
+font-size:35px;
+font-weight:bold;
+color:#b000ff;
+text-shadow:0 0 20px #b000ff;
+margin:20px 0;
+}
+
+.description{
+text-align:center;
+color:#ddd;
+margin-bottom:25px;
+}
+
+/* CARTES */
+
+.card{
+
+background:rgba(255,255,255,0.08);
+border:1px solid #b000ff;
+border-radius:20px;
+padding:20px;
+margin:20px 0;
+
+box-shadow:
+0 0 15px #b000ff;
+
+backdrop-filter:blur(10px);
+
+animation:lumiere 3s infinite alternate;
+
+}
+
+
+@keyframes lumiere{
+
+from{
+box-shadow:0 0 10px #b000ff;
+}
+
+to{
+box-shadow:0 0 30px #ff00ff;
+}
+
+}
+
+
+h2{
+color:#d580ff;
+text-shadow:0 0 10px #b000ff;
+}
+
+
+.price{
+color:#ffd700;
+font-size:22px;
+font-weight:bold;
+}
+
+
+.btn{
+
+display:inline-block;
+margin-top:15px;
+padding:12px 20px;
+border-radius:30px;
+background:#b000ff;
+color:white;
+text-decoration:none;
+border:none;
+cursor:pointer;
+
+box-shadow:0 0 20px #b000ff;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="menu">
+
+<a href="#accueil">🏠 Accueil</a>
+<a href="#services">🛒 Services</a>
+<a href="#contact">📞 Contact</a>
+<a href="#aide">❓ Aide</a>
+
+</nav>
+
+
+<div class="container">
+
+<section id="accueil">
+
+<div class="logo">
+🔥 Désiré Digital Services 🔥
+</div>
+
+<p class="description">
+Vos solutions numériques premium en un clic 🚀<br>
+VPN, services digitaux et assistance rapide.
+</p>
+
+</section><section id="services">
+
+<div class="card">
+
+<h2>📱 VPN iPhone</h2>
+
+<p>⚡ Connexion rapide et configuration facile sur iPhone.</p>
+
+<p class="price">2000F</p>
+
+<button class="btn" onclick="ajouter('VPN iPhone',2000)">
+🛒 Ajouter au panier
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>🤖 Android VPN</h2>
+
+<p>🚀 VPN optimisé pour les appareils Android.</p>
+
+<p class="price">1500F / semaine</p>
+
+<button class="btn" onclick="ajouter('Android VPN',1500)">
+🛒 Ajouter au panier
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>🎓 Formation VPN + Host</h2>
+
+<p>🛠️ Apprenez à configurer et gérer vos solutions VPN.</p>
+
+<p class="price">4000F</p>
+
+<button class="btn" onclick="ajouter('Formation VPN + Host',4000)">
+🛒 Ajouter au panier
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>🎬 Movie Box Pro</h2>
+
+<p>🍿 Service de divertissement premium.</p>
+
+<p class="price">1000F</p>
+
+<button class="btn" onclick="ajouter('Movie Box Pro',1000)">
+🛒 Ajouter au panier
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>💳 Carte virtuelle</h2>
+
+<p>💰 Solution de paiement numérique simple et pratique.</p>
+
+<p class="price">5000F</p>
+
+<button class="btn" onclick="ajouter('Carte virtuelle',5000)">
+🛒 Ajouter au panier
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>⭐ Facebook Premium</h2>
+
+<p>🔥 Une expérience améliorée avec options premium.</p>
+
+<p class="price">1000F</p>
+
+<button class="btn" onclick="ajouter('Facebook Premium',1000)">
+🛒 Ajouter au panier
+</button>
+
+</div>
+
+
+</section><section id="contact">
+
+<div class="card">
+
+<h2>🛒 Mon Panier</h2>
+
+<div id="panier">
+Votre panier est vide
+</div>
+
+<br>
+
+<p>
+Total :
+<span class="price" id="total">0</span> FCFA
+</p>
+
+
+<button class="btn" onclick="commander()">
+📲 Commander sur WhatsApp
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>📞 Contact</h2>
+
+<p>
+Besoin d'aide ou d'une commande ? Contactez-nous directement.
+</p>
+
+<a class="btn" href="https://wa.me/22669385149">
+💬 WhatsApp
+</a>
+
+</div>
+
+</section>
+
+
+<section id="aide">
+
+<div class="card">
+
+<h2>❓ Aide</h2>
+
+<p>✅ Choisissez votre service</p>
+<p>🛒 Ajoutez-le au panier</p>
+<p>📲 Envoyez votre commande sur WhatsApp</p>
+<p>⚡ Recevez votre service rapidement</p>
+
+</div>
+
+</section>
+
+
+
+<script>
+
+let panier = [];
+let total = 0;
+
+
+function ajouter(nom,prix){
+
+panier.push({
+nom:nom,
+prix:prix
+});
+
+total += prix;
+
+afficherPanier();
+
+}
+
+
+
+function afficherPanier(){
+
+let texte="";
+
+panier.forEach(function(produit){
+
+texte += "✅ "+produit.nom+" - "+produit.prix+"F<br>";
+
+});
+
+
+document.getElementById("panier").innerHTML =
+texte || "Votre panier est vide";
+
+
+document.getElementById("total").innerHTML = total;
+
+}
+
+
+
+function commander(){
+
+
+if(panier.length === 0){
+
+alert("Votre panier est vide");
+
+return;
+
+}
+
+
+let message =
+"Bonjour Désiré Digital Services 👋%0A%0A";
+
+
+message += "Ma commande :%0A";
+
+
+panier.forEach(function(produit){
+
+message += "✅ "+produit.nom+
+" - "+produit.prix+"F%0A";
+
+});
+
+
+message += "%0ATotal : "+total+" FCFA";
+
+
+window.open(
+"https://wa.me/22669385149?text="+message,
+"_blank"
+);
+
+
+}
+
+
+</script><div class="card">
+
+<h2>🏆 Pourquoi nous choisir ?</h2>
+
+<p>⚡ Service rapide</p>
+<p>🔒 Solutions fiables</p>
+<p>💎 Qualité premium</p>
+<p>📞 Assistance client</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>⭐ Service Premium</h2>
+
+<p>
+🚀 Des solutions numériques simples,
+rapides et accessibles.
+</p>
+
+</div>
+
+
+<footer style="
+text-align:center;
+margin:30px 0;
+color:#aaa;
+">
+
+<p>© 2026 Désiré Digital Services</p>
+
+<p>
+💜 Rapidité • Qualité • Confiance 💜
+</p><!-- Notification panier -->
+<div id="notification" class="notification"></div>
+
+<style>
+
+.notification{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+background:#b000ff;
+color:white;
+padding:15px 25px;
+border-radius:30px;
+box-shadow:0 0 20px #b000ff;
+opacity:0;
+transition:0.5s;
+z-index:999;
+font-weight:bold;
+}
+
+.notification.show{
+opacity:1;
+}
+
+</style>
+
+
+<script>
+
+function notification(message){
+
+let box = document.getElementById("notification");
+
+box.innerHTML = message;
+
+box.classList.add("show");
+
+
+setTimeout(function(){
+
+box.classList.remove("show");
+
+},2000);
+
+}
+
+</script><!-- Notification panier -->
+<div id="notification" class="notification"></div>
+
+<style>
+
+.notification{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+background:#b000ff;
+color:white;
+padding:15px 25px;
+border-radius:30px;
+box-shadow:0 0 20px #b000ff;
+opacity:0;
+transition:0.5s;
+z-index:999;
+font-weight:bold;
+}
+
+.notification.show{
+opacity:1;
+}
+
+</style>
+
+
+<script>
+
+let ancienAjouter = ajouter;
+
+ajouter = function(nom, prix){
+
+ancienAjouter(nom, prix);
+
+let box = document.getElementById("notification");
+
+box.innerHTML = "✅ " + nom + " ajouté au panier";
+
+box.classList.add("show");
+
+
+setTimeout(function(){
+
+box.classList.remove("show");
+
+},2000);
+
+}
+
+</script>
+
+</footer>
+
+
+</div>
+
+</body>
+</html>
+<!-- Bouton WhatsApp flottant -->
+<a href="https://wa.me/22669385149" class="whatsapp">
+💬
+</a>
+
+
+<style>
+
+.whatsapp{
+
+position:fixed;
+right:20px;
+bottom:20px;
+
+width:60px;
+height:60px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:#b000ff;
+color:white;
+
+border-radius:50%;
+
+font-size:30px;
+text-decoration:none;
+
+box-shadow:0 0 25px #b000ff;
+
+animation:pulse 2s infinite;
+
+z-index:999;
+
+}
+
+
+@keyframes pulse{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.15);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+</style><!-- Logo animé -->
+<div class="logo-animation">
+⚡ Désiré Digital Services ⚡
+</div>
+
+
+<!-- Statistiques -->
+<div class="card stats">
+
+<h2>📈 Nos statistiques</h2>
+
+<div>
+👥 <b>Clients satisfaits</b>
+<br>
+🚀 <b>Services disponibles</b>
+<br>
+⚡ <b>Assistance rapide</b>
+</div>
+
+</div>
+
+
+<!-- Panier amélioré -->
+<div class="card">
+
+<h2>🛒 Gestion du panier</h2>
+
+<p>
+Articles sélectionnés :
+<span id="compteur">0</span>
+</p>
+
+
+<button class="btn" onclick="viderPanier()">
+🗑️ Vider le panier
+</button>
+
+</div>
+
+
+<style>
+
+.logo-animation{
+
+text-align:center;
+font-size:30px;
+font-weight:bold;
+color:#b000ff;
+
+text-shadow:
+0 0 10px #b000ff,
+0 0 30px #ff00ff;
+
+animation:logo 2s infinite alternate;
+
+margin:25px 0;
+
+}
+
+
+@keyframes logo{
+
+from{
+transform:scale(1);
+}
+
+to{
+transform:scale(1.08);
+}
+
+}
+
+
+.stats{
+
+text-align:center;
+
+}
+
+
+</style>
+
+
+<script>
+
+function viderPanier(){
+
+panier=[];
+
+total=0;
+
+afficherPanier();
+
+
+let compteur=document.getElementById("compteur");
+
+if(compteur){
+
+compteur.innerHTML=0;
+
+}
+
+
+alert("🗑️ Panier vidé");
+
+}
+
+
+</script><!-- Logo premium -->
+<div class="logo-pro">
+⚡ Désiré Digital Services ⚡
+</div>
+
+<!-- Panier avancé -->
+<div class="card">
+<h2>🛒 Options panier</h2>
+
+<p>Produits dans le panier :
+<span id="nombreProduits">0</span>
+</p>
+
+<button class="btn" onclick="viderMonPanier()">
+🗑️ Vider le panier
+</button>
+
+</div>
+
+
+<style>
+
+.logo-pro{
+
+text-align:center;
+font-size:30px;
+font-weight:bold;
+color:#b000ff;
+text-shadow:0 0 15px #b000ff;
+animation:brille 2s infinite alternate;
+margin:25px 0;
+
+}
+
+
+@keyframes brille{
+
+from{
+filter:brightness(1);
+}
+
+to{
+filter:brightness(1.8);
+}
+
+}
+
+</style>
+
+
+<script>
+
+function viderMonPanier(){
+
+if(typeof panier !== "undefined"){
+
+panier=[];
+
+}
+
+if(typeof total !== "undefined"){
+
+total=0;
+
+}
+
+
+if(typeof afficherPanier === "function"){
+
+afficherPanier();
+
+}
+
+
+let compteur=document.getElementById("nombreProduits");
+
+if(compteur){
+
+compteur.innerHTML="0";
+
+}
+
+
+alert("🗑️ Panier vidé");
+
+}
+
+</script>
+<!-- Logo premium -->
+<div class="logo-pro">
+⚡ Désiré Digital Services ⚡
+</div>
+
+<!-- Panier avancé -->
+<div class="card">
+<h2>🛒 Options panier</h2>
+
+<p>Produits dans le panier :
+<span id="nombreProduits">0</span>
+</p>
+
+<button class="btn" onclick="viderMonPanier()">
+🗑️ Vider le panier
+</button>
+
+</div>
+
+
+<style>
+
+.logo-pro{
+
+text-align:center;
+font-size:30px;
+font-weight:bold;
+color:#b000ff;
+text-shadow:0 0 15px #b000ff;
+animation:brille 2s infinite alternate;
+margin:25px 0;
+
+}
+
+
+@keyframes brille{
+
+from{
+filter:brightness(1);
+}
+
+to{
+filter:brightness(1.8);
+}
+
+}
+
+</style>
+
+
+<script>
+
+function viderMonPanier(){
+
+if(typeof panier !== "undefined"){
+
+panier=[];
+
+}
+
+if(typeof total !== "undefined"){
+
+total=0;
+
+}
+
+
+if(typeof afficherPanier === "function"){
+
+afficherPanier();
+
+}
+
+
+let compteur=document.getElementById("nombreProduits");
+
+if(compteur){
+
+compteur.innerHTML="0";
+
+}
+
+
+alert("🗑️ Panier vidé");
+
+}
+
+</script>
+<script>
+function loginAdmin() {
+  let password = document.getElementById("adminPass").value;
+
+  if (password === "2583") {
+    document.getElementById("adminMsg").innerHTML = "✅ Bienvenue Administrateur";
+  } else {
+    document.getElementById("adminMsg").innerHTML = "❌ Mot de passe incorrect";
+  }
+}
+</script>
+<!-- VPN GRATUITS -->
+<section class="free-vpn">
+  <h2>🟢 VPN Gratuits</h2>
+
+  <div class="vpn-card">
+    <h3>🌐 Dark Tunnel</h3>
+    <p>Configuration gratuite disponible</p>
+    <button>Utiliser</button>
+  </div>
+
+  <div class="vpn-card">
+    <h3>🔐 SSH Custom</h3>
+    <p>Tunnel SSH gratuit</p>
+    <button>Utiliser</button>
+  </div>
+
+  <div class="vpn-card">
+    <h3>⚡ NetMod</h3>
+    <p>Configuration gratuite</p>
+    <button>Utiliser</button>
+  </div>
+
+  <div class="vpn-card">
+    <h3>🚀 HTTP Custom</h3>
+    <p>Configuration gratuite</p>
+    <button>Utiliser</button>
+  </div>
+</section>
+
+
+<!-- VPN PREMIUM -->
+<section class="premium-vpn">
+  <h2>⭐ VPN Premium</h2>
+
+  <div class="premium-card">
+    <h3>7 Jours</h3>
+    <h1>500 FCFA</h1>
+    <button>Activer Premium</button>
+  </div>
+
+  <div class="premium-card">
+    <h3>30 Jours</h3>
+    <h1>1000 FCFA</h1>
+    <button>Activer Premium</button>
+  </div>
+</section>

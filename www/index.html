@@ -1320,3 +1320,426 @@ panel.style.display="block";
 }
 
 </script>
+<!-- Zone téléchargement VPN gratuits -->
+
+<div class="card">
+
+<h2>🟢 VPN Gratuits</h2>
+
+<p>Choisissez votre configuration :</p>
+
+
+<div class="vpn-card">
+
+<h3>🌐 Dark Tunnel</h3>
+
+<p>Configuration gratuite disponible</p>
+
+<a class="btn" href="configs/darktunnel/config.hat" download>
+📥 Télécharger
+</a>
+
+</div>
+
+
+<div class="vpn-card">
+
+<h3>🔐 SSH Custom</h3>
+
+<p>Configuration SSH gratuite</p>
+
+<a class="btn" href="configs/sshcustom/config.hc" download>
+📥 Télécharger
+</a>
+
+</div>
+
+
+<div class="vpn-card">
+
+<h3>⚡ NetMod</h3>
+
+<p>Configuration gratuite</p>
+
+<a class="btn" href="configs/netmod/config.nm" download>
+📥 Télécharger
+</a>
+
+</div>
+
+
+<div class="vpn-card">
+
+<h3>🚀 HTTP Custom</h3>
+
+<p>Configuration gratuite</p>
+
+<a class="btn" href="configs/httpcustom/config.hc" download>
+📥 Télécharger
+</a>
+
+</div>
+
+
+</div>
+<!-- Nouvelle section offres VPN -->
+
+<div class="card offres-vpn">
+
+<h2>🚀 Nos Offres VPN</h2>
+
+<div class="offre gratuit">
+
+<h3>🟢 VPN Gratuit</h3>
+
+<p>
+✅ Dark Tunnel<br>
+✅ SSH Custom<br>
+✅ NetMod<br>
+✅ HTTP Custom
+</p>
+
+<button class="btn" onclick="commanderVPN('VPN Gratuit')">
+Obtenir gratuitement
+</button>
+
+</div>
+
+
+
+<div class="offre premium">
+
+<h3>⭐ VPN Premium</h3>
+
+<p>
+⚡ Connexion améliorée<br>
+🔐 Configuration personnalisée<br>
+🚀 Assistance rapide
+</p>
+
+
+<h1>
+500F / 7 jours
+</h1>
+
+<h1>
+1000F / 30 jours
+</h1>
+
+
+<button class="btn" onclick="commanderVPN('VPN Premium')">
+Activer Premium
+</button>
+
+</div>
+
+</div>
+
+
+<style>
+
+.offre{
+
+padding:20px;
+
+border-radius:20px;
+
+margin:15px 0;
+
+text-align:center;
+
+}
+
+
+.gratuit{
+
+background:#eaffea;
+
+border:2px solid #00aa00;
+
+color:#222;
+
+}
+
+
+.premium{
+
+background:#fff8d8;
+
+border:2px solid gold;
+
+color:#222;
+
+}
+
+
+.offre h3{
+
+font-size:25px;
+
+margin-bottom:15px;
+
+}
+
+
+.offre h1{
+
+color:#b88600;
+
+font-size:22px;
+
+margin:10px;
+
+}
+
+</style>
+<!-- Interface Connexion VPN -->
+
+<div class="card vpn-connect">
+
+<h2>🔐 Connexion VPN</h2>
+
+<p id="vpnStatus">
+⚪ Déconnecté
+</p>
+
+
+<button class="btn" onclick="connecterVPN()">
+🚀 Se connecter
+</button>
+
+
+<button class="btn" onclick="deconnecterVPN()">
+⛔ Déconnecter
+</button>
+
+
+</div>
+
+
+<script>
+
+function connecterVPN(){
+
+document.getElementById("vpnStatus").innerHTML =
+"🟢 VPN Connecté";
+
+}
+
+
+function deconnecterVPN(){
+
+document.getElementById("vpnStatus").innerHTML =
+"🔴 VPN Déconnecté";
+
+}
+
+</script>
+
+
+<style>
+
+.vpn-connect{
+
+text-align:center;
+
+}
+
+
+#vpnStatus{
+
+font-size:20px;
+
+font-weight:bold;
+
+margin:15px;
+
+color:#6a00ff;
+
+}
+
+</style>
+<!-- Expiration Premium -->
+
+<div class="card premium-time">
+
+<h2>⭐ Mon abonnement</h2>
+
+<p id="abonnement">
+Aucun abonnement actif
+</p>
+
+<button class="btn" onclick="activerPremium(7)">
+Activer 7 jours
+</button>
+
+<button class="btn" onclick="activerPremium(30)">
+Activer 30 jours
+</button>
+
+</div>
+
+
+<script>
+
+function activerPremium(jours){
+
+let date = new Date();
+
+date.setDate(
+date.getDate()+jours
+);
+
+
+localStorage.setItem(
+"expirationPremium",
+date
+);
+
+
+afficherExpiration();
+
+}
+
+
+
+function afficherExpiration(){
+
+let exp =
+localStorage.getItem("expirationPremium");
+
+
+if(exp){
+
+let date = new Date(exp);
+
+
+document.getElementById("abonnement").innerHTML =
+"⭐ Expire le : "+date.toLocaleDateString();
+
+}
+
+}
+
+
+afficherExpiration();
+
+</script>
+
+
+<style>
+
+.premium-time{
+
+text-align:center;
+
+}
+
+
+.premium-time .btn{
+
+margin:5px;
+
+}
+
+</style>
+<!-- Profil utilisateur -->
+
+<div class="card profil">
+
+<h2>👤 Mon Profil</h2>
+
+<p>
+Nom :
+<b id="userName">Utilisateur</b>
+</p>
+
+<p>
+Statut :
+<b id="userStatus">Gratuit</b>
+</p>
+
+<p>
+Expiration :
+<b id="userExpire">Aucun abonnement</b>
+</p>
+
+
+<button class="btn" onclick="chargerProfil()">
+🔄 Actualiser
+</button>
+
+</div>
+
+
+<script>
+
+function chargerProfil(){
+
+let exp =
+localStorage.getItem("expirationPremium");
+
+
+if(exp){
+
+document.getElementById("userStatus").innerHTML =
+"⭐ Premium";
+
+
+document.getElementById("userExpire").innerHTML =
+new Date(exp).toLocaleDateString();
+
+
+}else{
+
+
+document.getElementById("userStatus").innerHTML =
+"🟢 Gratuit";
+
+
+document.getElementById("userExpire").innerHTML =
+"Aucun abonnement";
+
+
+}
+
+}
+
+
+chargerProfil();
+
+</script>
+
+
+<style>
+
+.profil{
+
+text-align:center;
+
+}
+
+.profil p{
+
+margin:10px;
+
+color:#555;
+
+}
+
+</style>
+<!-- Amélioration boutons VPN -->
+
+<script>
+
+function vpnInfo(nom){
+
+alert(
+"🚀 "+nom+
+"\n\n✅ Configuration disponible\n"+
+"📲 Contactez-nous sur WhatsApp pour recevoir votre accès."
+);
+
+}
+
+</script>
