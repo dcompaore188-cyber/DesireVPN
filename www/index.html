@@ -1743,3 +1743,325 @@ alert(
 }
 
 </script>
+<!-- ADMINISTRATION DESIRE VPN -->
+
+<section class="card" id="adminSection">
+
+<h2>🔐 Administrateur DesireVPN</h2>
+
+<button class="btn" onclick="ouvrirAdmin()">
+⚙️ Accéder à l'administration
+</button>
+
+
+<div id="adminConnexion" style="display:none">
+
+<input 
+type="password"
+id="adminPassword"
+placeholder="Mot de passe admin">
+
+<button class="btn" onclick="loginAdmin()">
+🔓 Connexion
+</button>
+
+<p id="adminEtat"></p>
+
+</div>
+
+
+<div id="dashboardAdmin" style="display:none">
+
+
+<h3>📊 Tableau de bord</h3>
+
+<button class="btn" onclick="logoutAdmin()">
+🚪 Déconnexion
+</button>
+
+
+<hr>
+
+
+<h4>➕ Ajouter un service</h4>
+
+<input id="nomService" placeholder="Nom du service">
+
+<input id="prixService" placeholder="Prix">
+
+
+<button class="btn" onclick="ajouterService()">
+Ajouter
+</button>
+
+
+<hr>
+
+
+<h4>💰 Modifier un prix</h4>
+
+<input id="prixModif" placeholder="Nouveau prix">
+
+<button class="btn" onclick="modifierPrix()">
+Modifier
+</button>
+
+
+<hr>
+
+
+<h4>🌐 Gestion VPN</h4>
+
+<textarea id="configVPN"
+placeholder="Ajouter une information VPN">
+</textarea>
+
+<button class="btn" onclick="sauverVPN()">
+Sauvegarder VPN
+</button>
+
+
+<hr>
+
+
+<h4>📢 Message accueil</h4>
+
+<textarea id="messageAdmin"
+placeholder="Nouveau message">
+</textarea>
+
+<button class="btn" onclick="sauverMessage()">
+Changer message
+</button>
+
+
+<p id="resultAdmin"></p>
+
+
+</div>
+
+</section>
+
+
+
+<script>
+
+const ADMIN_PASSWORD = "2583";
+
+
+function ouvrirAdmin(){
+
+document.getElementById("adminConnexion").style.display="block";
+
+}
+
+
+
+function loginAdmin(){
+
+let pass =
+document.getElementById("adminPassword").value;
+
+
+if(pass === ADMIN_PASSWORD){
+
+
+localStorage.setItem("admin","connecte");
+
+
+document.getElementById("dashboardAdmin").style.display="block";
+
+document.getElementById("adminEtat").innerHTML=
+"✅ Connexion réussie";
+
+
+}else{
+
+document.getElementById("adminEtat").innerHTML=
+"❌ Mot de passe incorrect";
+
+}
+
+}
+
+
+
+if(localStorage.getItem("admin")==="connecte"){
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+document.getElementById("dashboardAdmin").style.display="block";
+
+});
+
+}
+
+
+
+function logoutAdmin(){
+
+localStorage.removeItem("admin");
+
+document.getElementById("dashboardAdmin").style.display="none";
+
+}
+
+
+
+function ajouterService(){
+
+let nom =
+document.getElementById("nomService").value;
+
+let prix =
+document.getElementById("prixService").value;
+
+
+localStorage.setItem(
+"service",
+nom+" - "+prix+"F"
+);
+
+
+document.getElementById("resultAdmin").innerHTML=
+"✅ Service enregistré";
+
+}
+
+
+
+function modifierPrix(){
+
+let prix =
+document.getElementById("prixModif").value;
+
+
+localStorage.setItem("prix",prix);
+
+
+document.getElementById("resultAdmin").innerHTML=
+"✅ Prix sauvegardé";
+
+}
+
+
+
+function sauverVPN(){
+
+let vpn =
+document.getElementById("configVPN").value;
+
+
+localStorage.setItem("vpn",vpn);
+
+
+document.getElementById("resultAdmin").innerHTML=
+"✅ Configuration VPN sauvegardée";
+
+}
+
+
+
+function sauverMessage(){
+
+let msg =
+document.getElementById("messageAdmin").value;
+
+
+localStorage.setItem("message",msg);
+
+
+document.getElementById("resultAdmin").innerHTML=
+"✅ Message modifié";
+
+}
+
+
+</script>
+<!-- ASSISTANT BOT DESIRE VPN -->
+
+<div class="card">
+
+<h2>🤖 Assistant DesireVPN</h2>
+
+<div id="chatBot"
+style="
+height:200px;
+overflow:auto;
+border:1px solid #ccc;
+padding:10px;
+border-radius:10px;
+">
+
+<p>🤖 Bonjour, je suis l'assistant DesireVPN. Comment puis-je vous aider ?</p>
+
+</div>
+
+
+<input 
+id="questionBot"
+placeholder="Écrire votre question..."
+>
+
+
+<button class="btn" onclick="envoyerBot()">
+Envoyer
+</button>
+
+
+</div>
+
+
+<script>
+
+function envoyerBot(){
+
+let question =
+document.getElementById("questionBot").value.toLowerCase();
+
+let reponse =
+"🤖 Je n'ai pas compris. Contactez le support WhatsApp.";
+
+
+if(question.includes("prix")){
+reponse =
+"💰 Nos offres sont disponibles dans la section Premium.";
+}
+
+
+if(question.includes("vpn")){
+reponse =
+"🌐 Choisissez votre VPN puis suivez les instructions.";
+}
+
+
+if(question.includes("premium")){
+reponse =
+"⭐ Les offres Premium donnent accès aux services payants.";
+}
+
+
+if(question.includes("whatsapp")){
+reponse =
+"📞 Contactez-nous via WhatsApp pour l'assistance.";
+}
+
+
+let chat =
+document.getElementById("chatBot");
+
+
+chat.innerHTML +=
+"<p>👤 "+question+"</p>";
+
+chat.innerHTML +=
+"<p>"+reponse+"</p>";
+
+
+document.getElementById("questionBot").value="";
+
+chat.scrollTop = chat.scrollHeight;
+
+}
+
+</script>
