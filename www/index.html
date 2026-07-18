@@ -776,3 +776,547 @@ padding-bottom:90px;
 }
 
 </style>
+<!-- Tableau de bord Admin -->
+
+<div id="adminPanel" class="card" style="display:none;">
+
+<h2>⚙️ Tableau de bord Admin</h2>
+
+<p>Bienvenue dans la gestion DesireVPN</p>
+
+<hr><br>
+
+<h3>🌐 Ajouter un serveur VPN</h3>
+
+<input id="serveur"
+placeholder="Nom du serveur"
+style="padding:10px;width:100%;border-radius:10px;">
+
+
+<button class="btn" onclick="ajouterServeur()">
+Ajouter
+</button>
+
+
+<p id="listeServeur"></p>
+
+
+<hr><br>
+
+
+<h3>⭐ Ajouter une offre Premium</h3>
+
+<input id="offre"
+placeholder="Nouvelle offre"
+style="padding:10px;width:100%;border-radius:10px;">
+
+
+<button class="btn" onclick="ajouterOffre()">
+Ajouter offre
+</button>
+
+
+<p id="listeOffre"></p>
+
+
+</div>
+
+
+
+<script>
+
+function ouvrirAdmin(){
+
+let pass=document.getElementById("adminPass").value;
+
+
+if(pass==="2583"){
+
+document.getElementById("adminPanel").style.display="block";
+
+document.getElementById("adminMsg").innerHTML=
+"✅ Accès Admin autorisé";
+
+}else{
+
+document.getElementById("adminMsg").innerHTML=
+"❌ Mot de passe incorrect";
+
+}
+
+}
+
+
+
+function ajouterServeur(){
+
+let s=document.getElementById("serveur").value;
+
+document.getElementById("listeServeur").innerHTML +=
+"🌐 "+s+"<br>";
+
+}
+
+
+
+function ajouterOffre(){
+
+let o=document.getElementById("offre").value;
+
+document.getElementById("listeOffre").innerHTML +=
+"⭐ "+o+"<br>";
+
+}
+
+</script>
+<!-- Activation Admin -->
+
+<script>
+
+let ancienLogin = loginAdmin;
+
+loginAdmin = function(){
+
+let password =
+document.getElementById("adminPass").value;
+
+
+if(password === "2583"){
+
+document.getElementById("adminMsg").innerHTML =
+"✅ Bienvenue Administrateur";
+
+
+let panel =
+document.getElementById("adminPanel");
+
+
+if(panel){
+
+panel.style.display="block";
+
+}
+
+
+}else{
+
+document.getElementById("adminMsg").innerHTML =
+"❌ Mot de passe incorrect";
+
+}
+
+}
+
+</script>
+<!-- Gestion configurations VPN Admin -->
+
+<div id="configPanel" class="card" style="display:none;">
+
+<h2>🔐 Configurations VPN</h2>
+
+<input 
+id="vpnNom"
+placeholder="Nom configuration"
+style="padding:10px;width:100%;border-radius:10px;margin:5px;">
+
+
+<select 
+id="vpnType"
+style="padding:10px;width:100%;border-radius:10px;margin:5px;">
+
+<option>Dark Tunnel</option>
+<option>SSH Custom</option>
+<option>NetMod</option>
+<option>HTTP Custom</option>
+
+</select>
+
+
+<button class="btn" onclick="ajouterConfigVPN()">
+➕ Ajouter configuration
+</button>
+
+
+<p id="listeConfig"></p>
+
+</div>
+
+
+<script>
+
+function ajouterConfigVPN(){
+
+let nom =
+document.getElementById("vpnNom").value;
+
+let type =
+document.getElementById("vpnType").value;
+
+
+document.getElementById("listeConfig").innerHTML +=
+
+"✅ "+type+" : "+nom+"<br>";
+
+}
+
+</script><!-- Ouverture panneau configurations VPN -->
+
+<script>
+
+let ancienLoginAdmin = loginAdmin;
+
+loginAdmin = function(){
+
+ancienLoginAdmin();
+
+
+let pass =
+document.getElementById("adminPass").value;
+
+
+if(pass === "2583"){
+
+
+let config =
+document.getElementById("configPanel");
+
+
+if(config){
+
+config.style.display="block";
+
+}
+
+
+}
+
+}
+
+</script>
+<!-- Sauvegarde Admin locale -->
+
+<script>
+
+let serveurs = JSON.parse(
+localStorage.getItem("serveursVPN")
+) || [];
+
+
+let offres = JSON.parse(
+localStorage.getItem("offresPremium")
+) || [];
+
+
+let configs = JSON.parse(
+localStorage.getItem("configsVPN")
+) || [];
+
+
+
+function ajouterServeur(){
+
+let s=document.getElementById("serveur").value;
+
+serveurs.push(s);
+
+localStorage.setItem(
+"serveursVPN",
+JSON.stringify(serveurs)
+);
+
+
+afficherAdmin();
+
+}
+
+
+
+function ajouterOffre(){
+
+let o=document.getElementById("offre").value;
+
+offres.push(o);
+
+localStorage.setItem(
+"offresPremium",
+JSON.stringify(offres)
+);
+
+
+afficherAdmin();
+
+}
+
+
+
+function ajouterConfigVPN(){
+
+let nom=document.getElementById("vpnNom").value;
+
+let type=document.getElementById("vpnType").value;
+
+
+configs.push({
+type:type,
+nom:nom
+});
+
+
+localStorage.setItem(
+"configsVPN",
+JSON.stringify(configs)
+);
+
+
+afficherAdmin();
+
+}
+
+
+
+function afficherAdmin(){
+
+let s=document.getElementById("listeServeur");
+
+let o=document.getElementById("listeOffre");
+
+let c=document.getElementById("listeConfig");
+
+
+if(s){
+
+s.innerHTML=serveurs.map(x=>"🌐 "+x).join("<br>");
+
+}
+
+
+if(o){
+
+o.innerHTML=offres.map(x=>"⭐ "+x).join("<br>");
+
+}
+
+
+if(c){
+
+c.innerHTML=configs.map(
+x=>"🔐 "+x.type+" : "+x.nom
+).join("<br>");
+
+}
+
+}
+
+
+</script><!-- Gestion clients Premium Admin -->
+
+<div id="clientsPanel" class="card" style="display:none;">
+
+<h2>👥 Clients Premium</h2>
+
+<input 
+id="clientNom"
+placeholder="Nom du client"
+style="padding:10px;width:100%;border-radius:10px;margin:5px;">
+
+
+<select 
+id="clientDuree"
+style="padding:10px;width:100%;border-radius:10px;margin:5px;">
+
+<option>7 jours - 500 FCFA</option>
+<option>30 jours - 1000 FCFA</option>
+
+</select>
+
+
+<button class="btn" onclick="ajouterClient()">
+➕ Ajouter client
+</button>
+
+
+<p id="listeClients"></p>
+
+</div>
+
+
+<script>
+
+let clientsPremium = JSON.parse(
+localStorage.getItem("clientsPremium")
+) || [];
+
+
+function ajouterClient(){
+
+let nom =
+document.getElementById("clientNom").value;
+
+
+let duree =
+document.getElementById("clientDuree").value;
+
+
+clientsPremium.push({
+nom:nom,
+offre:duree
+});
+
+
+localStorage.setItem(
+"clientsPremium",
+JSON.stringify(clientsPremium)
+);
+
+
+afficherClients();
+
+}
+
+
+
+function afficherClients(){
+
+let liste =
+document.getElementById("listeClients");
+
+
+if(liste){
+
+liste.innerHTML =
+clientsPremium.map(
+c=>"👤 "+c.nom+" - "+c.offre
+).join("<br>");
+
+}
+
+}
+
+</script><!-- Activation clients Premium Admin -->
+
+<script>
+
+let ancienLoginClient = loginAdmin;
+
+
+loginAdmin = function(){
+
+ancienLoginClient();
+
+
+let password =
+document.getElementById("adminPass").value;
+
+
+if(password === "2583"){
+
+
+let clients =
+document.getElementById("clientsPanel");
+
+
+if(clients){
+
+clients.style.display="block";
+
+afficherClients();
+
+}
+
+
+}
+
+}
+
+</script>
+<!-- Téléchargement configurations Admin -->
+
+<div id="downloadPanel" class="card" style="display:none;">
+
+<h2>📥 Fichiers VPN</h2>
+
+<input 
+id="fileName"
+placeholder="Nom du fichier"
+style="padding:10px;width:100%;border-radius:10px;margin:5px;">
+
+
+<textarea 
+id="fileContent"
+placeholder="Contenu configuration"
+style="padding:10px;width:100%;height:100px;border-radius:10px;margin:5px;">
+</textarea>
+
+
+<button class="btn" onclick="creerFichierVPN()">
+📥 Créer fichier
+</button>
+
+
+</div>
+
+
+<script>
+
+function creerFichierVPN(){
+
+let nom =
+document.getElementById("fileName").value;
+
+
+let contenu =
+document.getElementById("fileContent").value;
+
+
+let fichier = new Blob(
+[contenu],
+{type:"text/plain"}
+);
+
+
+let lien=document.createElement("a");
+
+lien.href=URL.createObjectURL(fichier);
+
+lien.download=nom+".txt";
+
+lien.click();
+
+}
+
+</script>
+<!-- Activation fichiers VPN Admin -->
+
+<script>
+
+let ancienLoginFichier = loginAdmin;
+
+
+loginAdmin = function(){
+
+ancienLoginFichier();
+
+
+let password =
+document.getElementById("adminPass").value;
+
+
+if(password === "2583"){
+
+
+let panel =
+document.getElementById("downloadPanel");
+
+
+if(panel){
+
+panel.style.display="block";
+
+}
+
+
+}
+
+}
+
+</script>
